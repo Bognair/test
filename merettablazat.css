@@ -1,0 +1,264 @@
+/* css/merettablazat.css */
+
+/* Hero szekció */
+.size-chart-hero {
+    background: linear-gradient(135deg, var(--accent-color-light), var(--accent-color)); /* Finom átmenet */
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom-left-radius: 50px; /* Lekerekített alul */
+    border-bottom-right-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.size-chart-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.size-chart-hero p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Fő tartalom konténer */
+.size-chart-main {
+    padding-bottom: 60px; /* Hely a footer előtt */
+}
+
+.size-chart-content {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+    background-color: var(--background-color-light);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Vezérlőgombok (kategória és mértékegység) */
+.controls-container {
+    display: flex;
+    flex-wrap: wrap; /* Mobilon tördelődjön */
+    justify-content: center;
+    gap: 25px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+.category-selector,
+.unit-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-btn,
+.unit-btn {
+    background-color: var(--button-background); /* Barna gomb */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px; /* Kapszula forma */
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.category-btn:hover,
+.unit-btn:hover {
+    background-color: var(--button-hover-background); /* Sötétebb barna */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+
+.category-btn.active,
+.unit-btn.active {
+    background-color: var(--accent-color); /* Lila szín az aktív gombnak */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px hsla(280, 52%, 70%, 0.4);
+    border: 2px solid var(--accent-color-dark);
+}
+
+/* Mérettáblázat megjelenítése */
+#size-chart-display {
+    padding: 20px 0;
+}
+
+#size-chart-display table {
+    width: 100%;
+    border-collapse: separate; /* Hogy a border-radius működjön */
+    border-spacing: 0;
+    margin-bottom: 40px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden; /* A kerekített sarkakhoz */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#size-chart-display th,
+#size-chart-display td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color); /* Különlegesebb rács */
+}
+
+#size-chart-display th {
+    background-color: var(--accent-color); /* Lila fejléc */
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky; /* Fejléc ragadós marad görgetéskor */
+    top: 0;
+    z-index: 2;
+}
+
+#size-chart-display tr:nth-child(even) {
+    background-color: #f8f8f8; /* Csíkos táblázat */
+}
+
+#size-chart-display td {
+    color: var(--text-color);
+}
+
+/* Utolsó sorok és oszlopok szegélyének eltávolítása a szebb megjelenésért */
+#size-chart-display tr:last-child td {
+    border-bottom: none;
+}
+#size-chart-display th:last-child,
+#size-chart-display td:last-child {
+    border-right: none;
+}
+
+/* Mérési útmutató */
+.measurement-guide {
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 1px dashed var(--border-color); /* Szaggatott elválasztó */
+    text-align: center;
+}
+
+.measurement-guide h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--heading-color);
+    margin-bottom: 30px;
+}
+
+.guide-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.guide-step {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.guide-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.guide-step img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.guide-step h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+}
+
+.guide-step p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.guide-tip {
+    margin-top: 40px;
+    font-style: italic;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+/* Mobil reszponzivitás */
+@media (max-width: 768px) {
+    .size-chart-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .size-chart-hero p {
+        font-size: 1rem;
+    }
+
+    .controls-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .category-selector button,
+    .unit-selector button {
+        width: 100%; /* Gombok teljes szélessége */
+    }
+
+    #size-chart-display table {
+        display: block;
+        overflow-x: auto; /* Vízszintes görgetés mobilon a táblázatnak */
+        -webkit-overflow-scrolling: touch; /* Sima görgetés iOS-en */
+        white-space: nowrap; /* Sorok ne törjenek */
+        -ms-overflow-style: -ms-autohiding-scrollbar; /* IE/Edge */
+    }
+
+    #size-chart-display thead,
+    #size-chart-display tbody,
+    #size-chart-display th,
+    #size-chart-display td,
+    #size-chart-display tr {
+        display: revert; /* Visszaállítja a táblázat alapértelmezett megjelenését */
+    }
+
+    /* Opcionális: stackelt oszlopok mobilon a táblázaton belül, ha kevés oszlop van
+       Jelenleg a vízszintes görgetés a prioritás, ami általában jobb megoldás
+       részletes táblázatokhoz. */
+    #size-chart-display th,
+    #size-chart-display td {
+        min-width: 100px; /* Minimális oszlopszélesség görgetésnél */
+        box-sizing: border-box;
+    }
+
+    .measurement-guide h2 {
+        font-size: 1.8rem;
+    }
+
+    .guide-steps {
+        grid-template-columns: 1fr; /* Egy oszlop mobilon */
+    }
+}
+
+/* Új változók a :root-ban (a style.css fájl elején vagy a meglévő :root blokkban) */
+:root {
+    /* ... (meglévő változók) ... */
+
+    /* Mérettáblázat specifikus színek */
+    --accent-color-light: hsl(279, 57%, 76%); /* Világosabb lila a hero-hoz */
+}

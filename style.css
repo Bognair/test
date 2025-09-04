@@ -1,0 +1,1519 @@
+/* Általános stílusok és alap beállítások */
+:root {
+    --primary-color: #333;
+    --secondary-color: #f4f4f4;
+    --accent-color: #6a0572; /* Mélyebb lila */
+    --text-color: #333;
+    --light-text-color: #f4f4f4;
+    --border-color: #ddd;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Eltávolítja az extra alatta lévő helyet */
+}
+
+/* Navigáció és Fejléc */
+.navbar {
+    background-color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    color: var(--primary-color);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color var(--transition-speed);
+    text-decoration: none;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width var(--transition-speed);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.cart-icon-desktop {
+    display: block; /* Asztali nézetben látható */
+}
+
+.cart-icon-desktop a {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.cart-icon-desktop a:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.burger-menu {
+    display: none; /* Mobilon lesz látható */
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+/* Mobil navigáció */
+/* Mobile Navbar */
+.mobile-navbar {
+    /* Az elemek egymás mellé rendezése és térközök elosztása */
+    display: flex; 
+    justify-content: space-around;
+    align-items: center; /* Függőlegesen középre igazítja a tartalmat */
+
+    /* Pozicionálás és méret (ezek a kulcsfontosságú változások) */
+    position: fixed; /* Rögzítés a képernyőn */
+    
+    /* Alulról, balról és jobbról is legyen távolság */
+    bottom: 10px; /* 10px margó alulról (vagy amennyit szeretnél) */
+    left: 10px; /* 10px margó balról */
+    right: 10px; /* 10px margó jobbról */
+    
+    width: auto; /* Ez engedi, hogy a 'left' és 'right' határozza meg a szélességet */
+    /* VAGY ha biztosra akarsz menni és fix 10px margókat használsz: */
+    /* width: calc(100% - 20px); */ /* Képernyő szélessége mínusz a 2*10px margó */
+
+    /* Térköz és megjelenés */
+    padding: 0.5rem 0; /* Belső térköz: 0.5rem felül/alul, 0 balról/jobbról (a külső margók miatt) */
+    background-color: #5a6268;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Kiemeltebb árnyék a lebegő hatáshoz */
+    
+    /* Lekerekített sarkok mindenhol */
+    border-radius: 10px; /* Egy egységes border-radius az egész elemnek */
+    
+    z-index: 999; /* Legfelül legyen más elemekhez képest */
+
+    /* Alapértelmezett állapot: rejtett, majd mobilon jelenik meg */
+    display: none; 
+}
+
+/* Mobilon jelenjen meg a mobile-navbar */
+@media (max-width: 768px) { /* Ezt a breakpointet használd, amit mobil nézetre beállítottál */
+    .mobile-navbar {
+        display: flex; /* Mobilon láthatóvá tesszük */
+        background-color: #5a6268;
+    }
+}
+
+/* A mobile-navbar egyes elemei (ikonok és szöveg) */
+.mobile-navbar .nav-item {
+    display: flex;
+    flex-direction: column; /* Ikon felül, szöveg alul */
+    align-items: center; /* Középre igazítja az ikont és szöveget */
+    text-decoration: none; /* Kikapcsolja az alapértelmezett aláhúzást */
+    color: var(--light-text-color); /* Világos szövegszín */
+    font-size: 0.8rem; /* Kisebb betűméret mobilra */
+    transition: color 0.3s ease;
+}
+
+.mobile-navbar .nav-item:hover {
+    color:#000000; /* Hover szín */
+}
+
+.mobile-navbar .nav-item i {
+    font-size: 1.5rem; /* Ikon mérete */
+    margin-bottom: 5px; /* Hely az ikon és a szöveg között */
+}
+
+/* Szakaszok általános stílusa */
+section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0; /* Alapból rejtett animációhoz */
+    transform: translateY(20px); /* Alapból kicsit lejjebb */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* Hero Section (Kezdőlap) */
+.hero-section {
+    background-color: var(--hero-background-color); /* Világosabb, bézs szín */
+    padding: 6rem 2rem; /* Felső/alsó és oldalsó padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Minimum magasság, hogy kitöltse a képernyőt */
+    overflow: hidden; /* Fontos, hogy a kilógó elemek ne okozzanak görgetősávot */
+    position: relative; /* Ha a későbbi árnyékok vagy díszítések abszolút pozícionálásúak */
+}
+
+.hero-inner-container {
+    display: flex;
+    flex-direction: row; /* Desktopon egymás mellett */
+    justify-content: space-between; /* Elválasztja a szöveget és a képet */
+    align-items: center; /* Középre igazítja függőlegesen */
+    max-width: 1200px; /* Max szélesség a tartalomnak */
+    width: 100%;
+    gap: 4rem; /* Hely a szöveg és a kép között */
+}
+
+.hero-text-content {
+    flex: 1; /* Elfoglalja a rendelkezésre álló helyet */
+    max-width: 50%; /* Max szélesség, hogy ne legyen túl széles */
+    text-align: left;
+    color: var(--dark-text-color); /* Sötétebb szövegszín */
+    z-index: 2; /* Hogy a szöveg a kép felett legyen, ha átfedés van */
+}
+
+.hero-text-content h1 {
+    font-family: 'Playfair Display', serif; /* Elegánsabb betűtípus */
+    font-size: 3.5rem; /* Nagyobb cím */
+    line-height: 1.1; /* Sorok közötti térköz */
+    margin-bottom: 1.5rem;
+    color: var(--heading-color);
+}
+
+.hero-text-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.hero-btn {
+    display: inline-block;
+    background-color: var(--button-background); /* Gomb háttérszíne (pl. barna) */
+    color: var(--button-text-color); /* Gomb szövegszíne (pl. fehér) */
+    padding: 12px 30px;
+    border-radius: 5px; /* Lekerekített sarkok */
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.hero-btn:hover {
+    background-color: var(--button-hover-background); /* Gomb hover színe */
+}
+
+
+.hero-image-container {
+    flex: 1; /* Elfoglalja a rendelkezésre álló helyet */
+    display: flex;
+    justify-content: flex-end; /* Jobbra igazítja a képet */
+    align-items: center;
+    position: relative;
+    max-width: 50%;
+    z-index: 1;
+}
+
+.hero-image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%; /* Ez a forma a képen, ha a kép háttere átlátszó. */
+                                                 /* VAGY: Egyszerű border-radius: 8px; ha csak szögletes */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Árnyék, hogy kiemelkedjen */
+    object-fit: cover; /* Biztosítja, hogy a kép kitöltse a teret */
+    transform: translateY(-20px); /* Kicsit feljebb tolja, ha a képnek is van árnyéka, és feljebb van a doboza */
+    /* A képen látható íves formához a háttérrel együtt speciálisabb CSS kellene,
+       pl. clip-path vagy egy háttér div ráhelyezése.
+       Most egy egyszerűbb lekerekített sarkú képet adtam meg.
+       Ha pontosan azt a formát szeretnéd, akkor a kép mögött kell egy íves alakzatú div,
+       aminek a színe megegyezik a hero section háttérszínével.
+       VAGY a kép maga kell, hogy már ívesen ki legyen vágva, átlátszó háttérrel. */
+}
+
+/* Színek definiálása (ha még nincsenek definiálva a :root-ban) */
+:root {
+    --hero-background-color: #f7f3ed; /* Világos bézs */
+    --heading-color: #333; /* Sötétszürke címekhez */
+    --text-color: #555; /* Közepes szürke szöveghez */
+    --dark-text-color: #333; /* Sötétebb szöveghez */
+    --button-background: #8b6d4d; /* Közepes barna */
+    --button-hover-background: #6f573c; /* Sötétebb barna hoverre */
+}
+
+
+/* Reszponzivitás mobilra (768px alatt) */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 4rem 1rem; /* Kisebb padding mobilon */
+        min-height: auto; /* Magasság automatikus mobilon */
+    }
+
+    .hero-inner-container {
+        flex-direction: column; /* Mobilon egymás alá kerülnek */
+        text-align: center; /* Szöveg középre igazítása */
+        gap: 2rem; /* Kisebb rés a szöveg és kép között */
+    }
+
+    .hero-text-content {
+        max-width: 100%; /* Teljes szélesség mobilon */
+        text-align: center; /* Szöveg középre igazítása mobilon */
+    }
+
+    .hero-text-content h1 {
+        font-size: 2.5rem; /* Kisebb cím mobilon */
+    }
+
+    .hero-text-content p {
+        font-size: 1rem; /* Kisebb szöveg mobilon */
+    }
+
+    .hero-image-container {
+        max-width: 80%; /* Kisebb kép mobilon */
+        justify-content: center; /* Középre igazítja a képet mobilon */
+    }
+
+    .hero-image-container img {
+        transform: translateY(0); /* Nincs függőleges eltolás mobilon */
+    }
+}
+
+/* Kategória áttekintés szakasz (grid) */
+.categories-section {
+    background-color: var(--secondary-color);
+    padding-top: 1rem;
+    padding-bottom: 5rem;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.category-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    text-decoration: none;
+}
+
+.category-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.category-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 1.5rem 0;
+}
+
+/* Termék lista és rács */
+.products-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* A gomb alulra igazításához */
+    align-items: center;
+    padding-bottom: 1rem; /* Hely a gombnak */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.product-card a {
+    display: block; /* Hogy a teljes kártya kattintható legyen a kép és szöveg részén */
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1; /* Hogy kitöltse a rendelkezésre álló helyet a gomb felett */
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px; /* Fix magasság a képeknek */
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin: 1rem 0.8rem 0.5rem;
+}
+
+.product-card p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.product-card button {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    font-weight: 500;
+    margin-top: 0.5rem; /* Elválasztás az ártól */
+}
+
+.product-card button:hover {
+    background-color: #8c0a96;
+}
+
+/* Rólunk szekció */
+.about-section {
+    padding: 60px 20px;
+    background-color: var(--background-color-light); /* Világosabb háttérszín */
+    text-align: center;
+}
+
+.about-content-wrapper {
+    display: flex;
+    flex-direction: row; /* Alapértelmezetten (desktop) sorban */
+    align-items: center; /* Függőlegesen középre igazítás */
+    gap: 40px; /* Távolság a kép és a szöveg között */
+    max-width: 1200px; /* Maximum szélesség a tartalomnak */
+    margin: 0 auto; /* Középre igazítás */
+    text-align: left; /* Szöveg igazítása balra a konténeren belül */
+}
+
+.about-image-container {
+    flex: 1; /* Elfoglalja a rendelkezésre álló helyet */
+    max-width: 45%; /* Max szélesség a képnek */
+    display: flex; /* Flexbox a kép igazításához */
+    justify-content: flex-start; /* Balra igazítja a képet a konténerén belül */
+}
+
+.about-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Lekerekített sarkok */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Enyhe árnyék */
+    object-fit: cover;
+}
+
+.about-text-content {
+    flex: 1; /* Elfoglalja a rendelkezésre álló helyet */
+    max-width: 55%; /* Max szélesség a szövegnek */
+}
+
+.about-text-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    text-align: center; 
+}
+
+.about-text-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+/* Reszponzivitás mobilra (768px alatt) */
+@media (max-width: 768px) {
+    .about-content-wrapper {
+        flex-direction: column; /* Mobilon egymás alá kerülnek (kép felül, szöveg alul) */
+        text-align: center; /* Középre igazítás mobilon */
+        gap: 30px; /* Kisebb rés a kép és szöveg között mobilon */
+    }
+
+    .about-image-container {
+        max-width: 80%; /* Kisebb kép mobilon */
+        justify-content: center; /* Középre igazítja a képet mobilon */
+        order: 1; /* Kép kerül felülre */
+    }
+
+    .about-text-content {
+        max-width: 100%; /* Teljes szélesség mobilon */
+        order: 2; /* Szöveg kerül alulra */
+    }
+    
+    .about-text-content h2,
+    .about-text-content p {
+        text-align: center; /* Cím és bekezdések középre igazítása mobilon */
+    }
+}
+
+/* Színek definiálása (ha még nincsenek definiálva a :root-ban) */
+:root {
+    --background-color-light: #f9f9f9; /* Egy világosabb háttérszín a Rólunk szekcióhoz */
+    /* ... többi színválasztó, pl. var(--heading-color), var(--text-color) ... */
+}
+
+.social-links a {
+    font-size: 1.8rem;
+    margin: 0 0.8rem;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* -----------------------------Lábjegyzet----------------------------- */
+/* Footer stílusok */
+.main-footer {
+    background-color: var(--footer-bg-color); /* Sötétebb háttér a lábléchez */
+    color: var(--light-text-color); /* Világos szöveg szín */
+    padding: 50px 20px 20px; /* Felső, oldalsó, alsó padding */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main-footer .footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Reszponzív oszlopok */
+    gap: 40px; /* Távolság az oszlopok között */
+    max-width: 1200px;
+    margin: 0 auto 40px auto; /* Középre igazítás, alul extra tér */
+    text-align: left; /* Alapértelmezett szövegigazítás */
+}
+
+.main-footer .footer-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--footer-heading-color); /* Kiemelt cím szín */
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--accent-color); /* Aláhúzás a címek alatt */
+    padding-bottom: 10px;
+    display: inline-block; /* Hogy az aláhúzás csak a szöveg alatt legyen */
+}
+
+.main-footer .footer-section p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.main-footer .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-footer .footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.main-footer .footer-section ul li a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Hogy a transform működjön */
+}
+
+.main-footer .footer-section ul li a:hover {
+    color: var(--accent-color); /* Lila hover szín */
+    transform: translateX(5px); /* Kicsit elmozdul jobbra hoverkor */
+}
+
+/* Közösségi ikonok */
+.social-icons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px; /* Távolság az ikonok között */
+    justify-content: flex-start; /* Balra igazítás */
+}
+
+.social-icons a {
+    color: var(--light-text-color);
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color); /* Lila hover szín */
+    transform: translateY(-3px) scale(1.1); /* Kicsit feljebb ugrik és nő */
+}
+
+/* Hírlevél űrlap */
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--footer-input-bg); /* Sötétebb input háttér */
+    color: var(--dark-text-color);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newsletter-form input[type="email"]::placeholder {
+    color: #aaa;
+}
+
+.newsletter-form input[type="email"]:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px hsla(280, 73%, 57%, 0.3);
+}
+
+.newsletter-form button {
+    background-color: var(--accent-color); /* Lila gomb */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: var(--accent-color-dark); /* Sötétebb lila hoverre */
+    transform: translateY(-2px);
+}
+
+/* Alsó lábléc rész (copyright, fizetési ikonok) */
+.footer-bottom {
+    border-top: 1px solid var(--footer-border-color); /* Vékony elválasztó vonal */
+    padding-top: 25px;
+    margin-top: 25px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap; /* Tördelődés mobilon */
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    text-align: center; /* Alapértelmezett közép mobilon */
+}
+
+.footer-bottom p {
+    margin: 0;
+    flex-basis: 100%; /* Teljes szélesség mobilon */
+    margin-bottom: 15px;
+}
+
+.payment-icons {
+    display: flex;
+    gap: 15px; /* Távolság az ikonok között */
+    flex-basis: 100%; /* Teljes szélesség mobilon */
+    justify-content: center; /* Középre igazítás mobilon */
+}
+
+.payment-icons i {
+    font-size: 2.2rem; /* Nagyobb fizetési ikonok */
+    color: var(--light-text-color);
+    transition: color 0.3s ease;
+}
+
+.payment-icons i:hover {
+    color: var(--accent-color);
+}
+
+.payment-icons img {
+    height: 30px; /* Fix magasság a Szépkártya logóknak */
+    object-fit: contain;
+    filter: grayscale(100%); /* Szürkeárnyalatos, hogy illeszkedjen */
+    opacity: 0.8;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.payment-icons img:hover {
+    filter: grayscale(0%); /* Színes lesz hoverkor */
+    opacity: 1;
+}
+
+/* Mobil reszponzivitás */
+@media (max-width: 768px) {
+    .main-footer .footer-container {
+        grid-template-columns: 1fr; /* Egy oszlop mobilon */
+        text-align: center; /* Szöveg középre igazítása */
+    }
+
+    .main-footer .footer-section h3 {
+        margin-bottom: 20px;
+        border-bottom: none; /* Mobilon nincs aláhúzás a címek alatt */
+        padding-bottom: 0;
+    }
+
+    .main-footer .footer-section ul {
+        margin-bottom: 20px;
+    }
+    .main-footer .footer-section ul li {
+        margin-bottom: 8px;
+    }
+
+    .social-icons, .newsletter-form {
+        justify-content: center; /* Középre igazítás */
+    }
+
+    .footer-bottom {
+        flex-direction: column; /* Egymás alá kerülnek az elemek */
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        margin-bottom: 10px;
+    }
+}
+
+/* Új CSS változók a :root-ban */
+:root {
+    /* ... (meglévő változóid, pl. accent-color, heading-color stb.) ... */
+
+    /* Footer színek */
+    --footer-bg-color: #2c2c2c; /* Sötét antracit háttér */
+    --footer-heading-color: #f0f0f0; /* Világosabb címek */
+    --footer-input-bg: #444; /* Input mező háttérszíne */
+    --footer-border-color: #4a4a4a; /* Elválasztó vonal színe */
+}
+
+/* Termék részletek oldal (product.html) */
+.product-detail-section {
+    padding: 4rem 2rem;
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+.product-detail-container {
+    display: flex;
+    flex-wrap: wrap; /* Hogy kisebb képernyőn egymás alá kerüljenek */
+    gap: 3rem;
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    align-items: flex-start;
+}
+
+.product-image-area {
+    flex: 1;
+    min-width: 300px; /* Minimum szélesség, hogy ne legyen túl kicsi */
+}
+
+.product-image-area img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.product-info-area {
+    flex: 2;
+    min-width: 350px;
+}
+
+.product-info-area h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.product-detail-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.product-detail-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+.product-specs {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.product-specs p {
+    margin-bottom: 0.5rem;
+}
+
+.product-specs strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.product-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap; /* Kisebb képernyőn sortörés */
+}
+
+.product-actions .add-to-cart-btn {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.product-actions .add-to-cart-btn:hover {
+    background-color: #8c0a96;
+    transform: translateY(-2px);
+}
+
+.product-actions .back-to-category-btn {
+    background-color: #6c757d; /* Szürke szín */
+    color: var(--light-text-color);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.product-actions .back-to-category-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+
+/* Reszponzív design */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* A fejléc magassága alatt */
+        left: 0;
+        background-color: #fff;
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        display: none; /* Alapból rejtett mobil nézetben */
+        padding: 1rem 0;
+    }
+
+    .nav-links.active {
+        display: flex; /* Aktív állapotban látható */
+    }
+
+    .nav-links li {
+        margin: 0;
+        text-align: center;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links a {
+        display: block; /* Hogy a teljes terület kattintható legyen */
+        padding: 0.8rem 2rem;
+    }
+
+    .burger-menu {
+        display: block; /* Mobilon látható */
+    }
+
+    .cart-icon-desktop {
+        display: none; /* Mobilon elrejtjük, a mobil nav-ban lesz */
+    }
+
+    .mobile-navbar {
+        display: flex; /* Mobilon látható */
+    }
+
+    /* Termék és kategória rácsok */
+    .category-grid, .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+
+    /* Termék részletek */
+    .product-detail-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+    }
+
+    .product-image-area {
+        min-width: unset;
+        width: 100%;
+        max-width: 400px; /* Max szélesség a képeknek */
+    }
+
+    .product-info-area {
+        min-width: unset;
+        width: 100%;
+        text-align: center; /* Középre igazítás mobilon */
+    }
+
+    .product-info-area h1 {
+        font-size: 2.2rem;
+    }
+
+    .product-detail-price {
+        font-size: 1.8rem;
+    }
+
+    .product-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .product-actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .hero-section {
+        padding: 6rem 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    section {
+        padding: 3rem 1rem;
+    }
+
+    .category-grid, .product-grid {
+        grid-template-columns: 1fr; /* Egy oszlop mobil nézetben */
+    }
+
+    .product-card img, .category-card img {
+        height: 180px;
+    }
+
+    .product-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .product-card p {
+        font-size: 1rem;
+    }
+
+    .product-detail-info h1 {
+        font-size: 2rem;
+    }
+
+    .product-detail-price {
+        font-size: 1.6rem;
+    }
+}
+/* Termékkártya képeihez (thumbnail galéria) */
+.product-image-area {
+    display: flex;
+    flex-direction: column; /* Kép felül, bélyegképek alul */
+    align-items: center; /* Vízszintesen középre igazítja a képeket */
+    gap: 15px; /* Hely a fő kép és a bélyegképek között */
+}
+
+.product-image-area #product-detail-image {
+    width: 100%;
+    max-width: 500px; /* Max szélesség a fő képnek */
+    height: auto; /* A magasságot automatikusan igazítja az arányokhoz */
+    cursor: pointer; /* Jelezzük, hogy kattintható */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    object-fit: cover; /* Képarány megtartása, kitölti a keretet */
+}
+
+.thumbnail-gallery {
+    display: flex; /* Ez rendezi sorba a bélyegképeket */
+    flex-wrap: wrap; /* Több sorba tör, ha nem fér el */
+    justify-content: center; /* Ez középre igazítja a bélyegképeket a sorban */
+    gap: 10px; /* Hely a bélyegképek között */
+    max-width: 500px; /* Ugyanaz a szélesség, mint a fő kép, hogy alatta jól illeszkedjen */
+}
+
+.thumbnail-item {
+    width: 80px; /* **EZ A LEGFONTOSABB: Bélyegkép fix szélessége** */
+    height: 80px; /* **Bélyegkép fix magassága** */
+    object-fit: cover; /* Képarány megtartása, kitölti a keretet */
+    border: 2px solid transparent; /* Alapértelmezett keret */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.thumbnail-item:hover {
+    transform: scale(1.05);
+}
+
+.thumbnail-item.active {
+    border-color: var(--accent-color); /* Aktív bélyegkép kiemelése */
+}
+
+
+/* --- Lightbox Stílusok --- */
+
+.lightbox-overlay {
+    display: none; /* Alapból rejtve */
+    position: fixed; /* Fixen a képernyőn */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Áttetsző fekete háttér */
+    z-index: 1000; /* Legfelül legyen */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s forwards;
+}
+
+.lightbox-overlay.active {
+    display: flex; /* Megjelenítjük, ha aktív */
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%; /* Max szélesség */
+    max-height: 90%; /* Max magasság */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color); /* Háttérszín */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    animation: slideIn 0.3s forwards;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 80vh; /* Max magasság a viewport 80%-a */
+    object-fit: contain; /* Kép arányainak megőrzése */
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: var(--light-text-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.lightbox-close:hover {
+    color: var(--accent-color);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    color: var(--light-text-color);
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none; /* Ne lehessen kijelölni a szöveget */
+}
+
+.lightbox-nav:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--accent-color);
+}
+
+.lightbox-prev {
+    left: 10px;
+}
+
+.lightbox-next {
+    right: 10px;
+}
+
+/* Animációk */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Mobilon is alkalmazkodjon */
+@media (max-width: 768px) {
+    .product-detail-container {
+        flex-direction: column; /* Mobilon egymás alá kerülnek a részek */
+    }
+
+    .product-image-area,
+    .product-info-area {
+        width: 100%; /* Teljes szélesség mobilon */
+    }
+
+    .product-image-area #product-detail-image,
+    .thumbnail-gallery {
+        max-width: 100%; /* A képek és bélyegképek kitöltik a rendelkezésre álló szélességet */
+    }
+
+    .lightbox-nav {
+        font-size: 2rem;
+        padding: 5px;
+        top: auto;
+        bottom: 10px; /* Nyilak alulra kerülnek mobilon */
+        transform: translateY(0);
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
+
+    .lightbox-close {
+        font-size: 2rem;
+        top: 5px;
+        right: 10px;
+    }
+}
+/* style.css legvégére */
+.thumbnail-item {
+    width: 80px !important; /* Ideiglenesen !important, ha más felülírja */
+    height: 80px !important; /* Ideiglenesen !important, ha más felülírja */
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+/* Újdonságok szekció - index.html */
+.new-arrivals-section {
+    padding: 60px 20px;
+    background-color: var(--background-color-light); /* Világosabb háttérszín */
+    text-align: center;
+}
+
+.new-arrivals-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--heading-color);
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block; /* Hogy az aláhúzás csak a szöveg alatt legyen */
+}
+
+.new-arrivals-section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%; /* Középre igazítás */
+    transform: translateX(-50%);
+    bottom: -10px; /* Aláhúzás távolsága a szövegtől */
+    width: 60px; /* Az aláhúzás szélessége */
+    height: 4px; /* Az aláhúzás vastagsága */
+    background-color: var(--accent-color); /* A lila szín */
+    border-radius: 2px;
+}
+
+/* Termék rács elrendezés (globális) */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reszponzív rács */
+    gap: 30px; /* Távolság a kártyák között */
+    max-width: 1200px; /* Max szélesség */
+    margin: 0 auto; /* Középre igazítás */
+}
+
+/* Egyedi termék kártya (általános stílus, ami MINDENHOL érvényes, kivéve ha felülírják) */
+.product-card {
+    background-color: var(--background-color-light); /* Általános világos háttérszín */
+    border-radius: 8px; /* Általános lekerekítés */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Általános árnyék */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.product-card-image {
+    width: 100%;
+    height: 250px; /* Fix magasság a képeknek */
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-card-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: var(--heading-color);
+    margin: 15px 10px 5px 10px;
+    text-decoration: none;
+}
+
+.product-card-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.product-link:hover .product-card-name {
+    color: var(--accent-color);
+}
+
+.add-to-cart-btn {
+    background-color: var(--accent-color); /* Lila színű gomb */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--accent-color-dark); /* Sötétebb lila hoverre */
+}
+
+/* KÜLÖNLEGES STÍLUS AZ ÚJDONSÁGOK SZEKCIÓ TERMÉKKÁRTYÁINÁL */
+#new-arrivals-product-grid .product-card {
+    background: linear-gradient(135deg, var(--new-arrival-gradient-start), var(--new-arrival-gradient-end)); /* Gradiens háttér */
+    border: 2px solid var(--new-arrival-card-border); /* Erős, kiemelő szegély */
+    border-radius: 25px; /* Még nagyobb lekerekítés */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35), /* Erőteljesebb árnyék */
+                0 0 0 7px var(--new-arrival-card-border-glow); /* Kiemelt "glow" hatás */
+    transform: scale(1.03) rotate(0.5deg); /* Enyhe forgatás és nagyobb méretezés alapból */
+    position: relative;
+    overflow: hidden; /* A "New" szalaghoz */
+}
+
+#new-arrivals-product-grid .product-card:hover {
+    transform: scale(1.07) translateY(-12px) rotate(-0.5deg); /* Még nagyobb lebegés, méretezés és ellentétes forgatás hoverkor */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45),
+                0 0 0 10px var(--new-arrival-card-border-glow-hover);
+}
+
+#new-arrivals-product-grid .product-card-image {
+    border-radius: 22px 22px 0 0; /* A kép felső sarkai lekerekítettek, illeszkedve a kártyához */
+    border-bottom: none; /* Nincs szegély a kép alatt */
+    height: 280px; /* Kicsit magasabb kép */
+    transition: transform 0.4s ease-out; /* Animáció a képnek hoverkor */
+}
+
+#new-arrivals-product-grid .product-card:hover .product-card-image {
+    transform: scale(1.05); /* A kép kicsit kinagyítódik hoverkor */
+}
+
+#new-arrivals-product-grid .product-card-name {
+    font-size: 1.4rem; /* Még nagyobb és vastagabb név */
+    font-weight: 800;
+    color: var(--new-arrival-text-color); /* Eltérő szövegszín */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Enyhe árnyék a szövegen */
+}
+
+#new-arrivals-product-grid .product-card-price {
+    font-size: 1.3rem; /* Nagyobb ár betűméret */
+    color: var(--new-arrival-price-color); /* Kiemelt, ütős árszín */
+    font-weight: 800;
+}
+
+/* Újdonságok "Kosárba" gombja - Teljesen egyedi és kiemelt stílus */
+#new-arrivals-product-grid .add-to-cart-btn {
+    background: linear-gradient(45deg, var(--new-arrival-button-gradient-start), var(--new-arrival-button-gradient-end)); /* Gradiens gomb */
+    color: var(--new-arrival-button-text); /* Világos szöveg a gombon */
+    padding: 14px 30px; /* Még nagyobb gomb */
+    border-radius: 50px; /* Teljesen lekerekített gomb (pill form) */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35); /* Jelentősebb gomb árnyék */
+    font-size: 1.15rem; /* Nagyobb gomb szöveg */
+    font-weight: 700;
+    letter-spacing: 1px; /* Távolság a betűk között */
+    margin-bottom: 25px; /* Több hely alul */
+    border: none;
+    text-transform: uppercase; /* Nagybetűs szöveg */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Általánosabb átmenet */
+}
+
+#new-arrivals-product-grid .add-to-cart-btn:hover {
+    background: linear-gradient(45deg, var(--new-arrival-button-gradient-end), var(--new-arrival-button-gradient-start)); /* Megfordított gradiens hoverre */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    transform: translateY(-4px) scale(1.02); /* Kicsit feljebb ugrik és nő */
+}
+
+/* Opcionális: "NEW" szalag a kártyán - Nagyon látványos eltérés! */
+/* EZ IGÉNYEL PLUSZ HTML-T a JavaScriptben.
+   Ha ezt szeretnéd, a script.js-ben a productCard template-be
+   illessz be egy <span class="new-arrival-badge">ÚJ!</span>
+   vagy <span class="new-arrival-badge">✨ ÚJ! ✨</span>
+   vagy hasonló span-t a product-card div elejére. */
+#new-arrivals-product-grid .product-card .new-arrival-badge {
+    position: absolute;
+    top: 15px;
+    right: -20px; /* Részben lógjon ki */
+    background-color: var(--new-badge-bg);
+    color: var(--new-badge-text);
+    padding: 8px 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transform: rotate(45deg); /* Forgatott szalag */
+    transform-origin: 100% 0%; /* Forgatás sarokpontja */
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border-bottom-left-radius: 8px; /* Szebb sarok */
+    border-top-right-radius: 8px; /* Szebb sarok */
+}
+
+
+/* Mobil reszponzivitás a rácshoz */
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* Egy oszlop mobilon */
+        padding: 0 10px;
+    }
+
+    #new-arrivals-product-grid .product-card {
+        border-radius: 18px; /* Kisebb lekerekítés mobilon */
+        transform: scale(1) rotate(0deg); /* Nincs alapból méretezés és forgatás mobilon */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25),
+                    0 0 0 5px var(--new-arrival-card-border-glow);
+    }
+
+    #new-arrivals-product-grid .product-card:hover {
+        transform: translateY(-8px) scale(1.02) rotate(0deg); /* Kisebb lebegés és méretezés mobilon */
+        box-shadow: 0 12px 30px rgba(0,0,0,0.35),
+                    0 0 0 7px var(--new-arrival-card-border-glow-hover);
+    }
+
+    #new-arrivals-product-grid .product-card-image {
+        height: 220px; /* Kicsit kisebb kép mobilon */
+        border-radius: 15px 15px 0 0;
+    }
+
+    #new-arrivals-product-grid .product-card-name {
+        font-size: 1.25rem;
+    }
+
+    #new-arrivals-product-grid .product-card-price {
+        font-size: 1.15rem;
+    }
+
+    #new-arrivals-product-grid .add-to-cart-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+     #new-arrivals-product-grid .product-card .new-arrival-badge {
+        font-size: 0.75rem;
+        padding: 6px 20px;
+        top: 10px;
+        right: -15px;
+    }
+}
+
+
+/* ÚJ ÉS FRISSÍTETT CSS változók definiálása a :root-ban */
+/* Helyezd el ezt a :root blokkot a CSS fájlod elején,
+   ha még nem definiáltad ezeket a változókat.
+   Győződj meg róla, hogy ezek a színek illeszkednek a márkádhoz! */
+:root {
+    /* Alap színek (ha már megvannak, hagyd változatlanul, vagy frissítsd) */
+    --accent-color: hsl(280, 73%, 57%); /* Példa lila */
+    --accent-color-dark: hsl(280, 60%, 45%); /* Példa sötétebb lila */
+    --heading-color: #333; /* Sötétszürke címekhez */
+    --text-color: #555; /* Közepes szürke szöveghez */
+    --dark-text-color: #333; /* Sötétebb szöveghez */
+    --light-text-color: #f0f0f0; /* Világos szöveg, pl. mobil navbar */
+    --background-color-light: #f9f9f9; /* Világos háttérszín */
+    --border-color: #eee; /* Világos szegély szín */
+
+    /* Hero szekció színek (ha már megvannak, hagyd változatlanul) */
+    --hero-background-color: #f7f3ed; /* Világos bézs */
+    --button-background: #8b6d4d; /* Közepes barna */
+    --button-hover-background: #6f573c; /* Sötétebb barna hoverre */
+
+
+    /* ÚJDONSÁGOK SPECIFIKUS SZÍNEI - MARKÁNSAN ELTÉRŐ */
+    --new-arrival-gradient-start: #f8f8f8; /* Világosabb gradiens kezdete */
+    --new-arrival-gradient-end: #ededed; /* Világosabb gradiens vége */
+    --new-arrival-card-border: var(--accent-color); /* Szegély az accent színnel */
+    --new-arrival-card-border-glow: hsla(280, 51%, 86%, 0.4); /* Erősebb árnyék "glow" szín */
+    --new-arrival-card-border-glow-hover: hsla(309, 97%, 66%, 0.6); /* Még erősebb glow hoverre */
+    
+    --new-arrival-text-color: #333; /* Sötétszürke szövegszín */
+    --new-arrival-price-color: #e91e63; /* Élénk rózsaszínes ár (kiemelésre) */
+    
+    --new-arrival-button-gradient-start: #f1c3fe; /* Gradiens gomb kezdete */
+    --new-arrival-button-gradient-end: #d640ff; /* Gradiens gomb vége */
+    --new-arrival-button-text: rgb(0, 0, 0); /* Fehér szöveg a gombon */
+
+    --new-badge-bg: #ff4081; /* Élénk piros/rózsaszín a "NEW" jelvényhez */
+    --new-badge-text: white; /* Fehér szöveg a jelvényen */
+}

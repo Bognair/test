@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Női Pulóverek - Elegancia Divat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Elegancia Divat</div>
+            <ul class="nav-links">
+                <li><a href="/index.html#home">Kezdőlap</a></li>
+                <li><a href="/index.html#categories-overview">Kategóriák</a></li>
+                <li><a href="/index.html#new-arrivals">Újdonságok</a></li>
+                <li><a href="/index.html#about">Rólunk</a></li>
+                <li><a href="/index.html#contact">Kapcsolat</a></li>
+                <li class="cart-icon-desktop"><a href="/index.html#cart"><i class="fas fa-shopping-cart"></i> Kosár</a></li>
+            </ul>
+            <div class="burger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="products-section category-page-products">
+            <h2 id="category-title">Női pulóverek</h2>
+            <div class="product-grid" id="category-product-grid">
+                </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Elegancia Divat. Minden jog fenntartva.</p>
+        <div class="footer-links">
+            <a href="#">Adatvédelmi irányelvek</a>
+            <a href="#">Általános Szerződési Feltételek</a>
+        </div>
+    </footer>
+
+    <nav class="mobile-navbar">
+        <a href="/index.html#home" class="nav-item"><i class="fas fa-home"></i><span class="nav-text">Kezdőlap</span></a>
+        <a href="/index.html#categories-overview" class="nav-item"><i class="fas fa-th-large"></i><span class="nav-text">Kategóriák</span></a>
+        <a href="/index.html#cart" class="nav-item"><i class="fas fa-shopping-cart"></i><span class="nav-text">Kosár</span></a>
+        <a href="/index.html#contact" class="nav-item"><i class="fas fa-envelope"></i><span class="nav-text">Kapcsolat</span></a>
+    </nav>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const categoryProductsGrid = document.getElementById('category-product-grid');
+            const categoryTitle = document.getElementById('category-title').textContent;
+            let categoryName = '';
+
+            switch (categoryTitle) {
+                case 'Férfi ingek':
+                    categoryName = 'ferfi-ingek';
+                    break;
+                case 'Férfi nadrágok':
+                    categoryName = 'ferfi-nadragok';
+                    break;
+                case 'Férfi pólók':
+                    categoryName = 'ferfi-polok';
+                    break;
+                case 'Férfi pulóverek':
+                    categoryName = 'ferfi-puloverek';
+                    break;
+                case 'Női ruhák':
+                    categoryName = 'noi-ruhak';
+                    break;
+                case 'Női blúzok':
+                    categoryName = 'noi-bluzok';
+                    break;
+                case 'Női szoknyák':
+                    categoryName = 'noi-szoknyak';
+                    break;
+                case 'Női pulóverek':
+                    categoryName = 'noi-puloverek';
+                    break;
+                default:
+                    categoryName = '';
+                    break;
+            }
+
+            fetch('/data.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP hiba! Státusz: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(products => {
+                    const filteredProducts = products.filter(product => product.category === categoryName);
+
+                    if (filteredProducts.length === 0) {
+                        categoryProductsGrid.innerHTML = '<p>Jelenleg nincsenek termékek ebben a kategóriában.</p>';
+                    } else {
+                        filteredProducts.forEach(product => {
+                            const productCard = `
+                                <div class="product-card">
+                                    <a href="/product.html?id=${product.id}" class="product-link"> <img src="/${product.images[0]}" alt="${product.name}" class="product-card-image"> <h3 class="product-card-name">${product.name}</h3> <p class="product-card-price">${product.price}</p> </a>
+                                    <button class="add-to-cart-btn">Kosárba</button> </div>
+                            `;
+                            categoryProductsGrid.innerHTML += productCard;
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Hiba a termékek betöltésekor:', error);
+                    categoryProductsGrid.innerHTML = '<p>Hiba történt a termékek betöltésekor. Kérjük, próbálja újra később.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

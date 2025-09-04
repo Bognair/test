@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="product-page-title">Termék Részletek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">boglárka.</div>
+            <ul class="nav-links">
+                <li><a href="/index.html#home">Kezdőlap</a></li>
+                <li><a href="/index.html#categories-overview">Kategóriák</a></li>
+                <li><a href="/index.html#new-arrivals">Újdonságok</a></li>
+                <li><a href="/index.html#about">Rólunk</a></li>
+                <li><a href="/kapcsolat.html#contact">Kapcsolat</a></li>
+                <li class="cart-icon-desktop"><a href="#cart"><i class="fas fa-shopping-cart"></i> Kosár</a></li>
+            </ul>
+            <div class="burger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="product-detail-section">
+            <div class="product-detail-container">
+                <div class="product-image-area">
+                    <img id="product-detail-image" src="" alt="Termék kép">
+                    <div class="thumbnail-gallery" id="thumbnail-gallery">
+                        </div>
+                </div>
+                <div class="product-info-area">
+                    <h1 id="product-detail-name"></h1>
+                    <p class="product-detail-price" id="product-detail-price"></p>
+                    <p class="product-detail-description" id="product-detail-description"></p>
+
+                    <div class="product-specs">
+                        <p><strong>Anyag:</strong> <span id="product-material"></span></p>
+                        <p><strong>Elérhető méretek:</strong> <span id="product-sizes"></span></p>
+                        <p><strong>Elérhető színek:</strong> <span id="product-colors"></span></p>
+                        <p><strong>Mosási útmutató:</strong> <span id="product-washing"></span></p>
+                        <p><strong>Készlet:</strong> <span id="product-availability"></span></p>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Kosárba</button>
+                        <button class="back-to-category-btn">Vissza a kategóriához</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section footer-about">
+                <h3>boglárka.</h3>
+                <p>Fedezze fel a legújabb divatot és fejezze ki egyedi stílusát velünk. Minőség, elegancia, és megfizethetőség.</p>
+                <div class="social-icons">
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section footer-links">
+                <h3>Információk</h3>
+                <ul>
+                    <li><a href="/aszf.html">Általános Szerződési Feltételek</a></li>
+                    <li><a href="/adatvedelem.html">Adatvédelmi Irányelvek</a></li>
+                    <li><a href="/gyik.html">Gyakran Ismételt Kérdések (GYIK)</a></li>
+                    <li><a href="/index.html#about">Rólunk</a></li>
+                    <li><a href="/kapcsolat.html">Kapcsolat</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-services">
+                <h3>Szolgáltatások</h3>
+                <ul>
+                    <li><a href="/szallitas.html">Szállítási Információk</a></li>
+                    <li><a href="/fizetes.html">Fizetési Információk</a></li>
+                    <li><a href="/visszakuldes.html">Visszaküldés és Garancia</a></li>
+                    <li><a href="/merettablazat.html">Mérettáblázat</a></li>
+                    <li><a href="/utmutato.html">Ápolási útmutató</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-newsletter">
+                <h3>Hírlevél</h3>
+                <p>Iratkozz fel hírlevelünkre, és értesülj elsőként újdonságainkról és exkluzív ajánlatainkról!</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email címed" aria-label="Email cím" required>
+                    <button type="submit">Feliratkozom</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 boglárka. Minden jog fenntartva.</p>
+            <div class="payment-icons">
+                <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                <i class="fa-brands fa-apple-pay" aria-label="Applepay"></i>
+                <i class="fa-brands fa-cc-amex" aria-label="Americanexpress"></i>
+                <i class="fa-brands fa-cc-amazon-pay" aria-label="Amazonpay"></i>
+            </div>
+        </div>
+    </footer>
+
+    <nav class="mobile-navbar">
+        <a href="/index.html#home" class="nav-item"><i class="fas fa-home"></i><span class="nav-text">Kezdőlap</span></a>
+        <a href="/index.html#categories-overview" class="nav-item"><i class="fas fa-th-large"></i><span class="nav-text">Kategóriák</span></a>
+        <a href="#cart" class="nav-item"><i class="fas fa-shopping-cart"></i><span class="nav-text">Kosár</span></a>
+        <a href="/kapcsolat.html#contact" class="nav-item"><i class="fas fa-envelope"></i><span class="nav-text">Kapcsolat</span></a>
+    </nav>
+
+    <div class="lightbox-overlay" id="lightbox-overlay">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightbox-close">&times;</span>
+            <img class="lightbox-image" id="lightbox-image" src="" alt="Nagyított termék kép">
+            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&#10094;</button> <button class="lightbox-nav lightbox-next" id="lightbox-next">&#10095;</button> </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const productDetailContainer = document.querySelector('.product-detail-container');
+
+            // Lightbox elemek
+            const lightboxOverlay = document.getElementById('lightbox-overlay');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            const lightboxClose = document.getElementById('lightbox-close');
+
+            let currentImageIndex = 0;
+            let allProductImages = []; // Ebben tároljuk a termék összes képének útvonalát
+
+            if (productId) {
+                fetch('/data.json') // Abszolút útvonal
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP hiba! Státusz: ${response.status} - Kérés URL: ${response.url}`);
+                        }
+                        return response.json();
+                    })
+                    .then(products => {
+                        const product = products.find(p => p.id === productId);
+
+                        if (product) {
+                            document.getElementById('product-page-title').textContent = `${product.name} - Elegancia Divat`;
+                            document.getElementById('product-detail-name').textContent = product.name;
+                            document.getElementById('product-detail-price').textContent = product.price;
+                            document.getElementById('product-detail-description').textContent = product.description;
+
+                            document.getElementById('product-material').textContent = product.material || 'Nincs adat';
+                            document.getElementById('product-sizes').textContent = (product.size_options && product.size_options.length > 0) ? product.size_options.join(', ') : 'Nincs adat';
+                            document.getElementById('product-colors').textContent = (product.color_options && product.color_options.length > 0) ? product.color_options.join(', ') : 'Nincs adat';
+                            document.getElementById('product-washing').textContent = product.washing_instructions || 'Nincs adat';
+                            document.getElementById('product-availability').textContent = product.availability || 'Nincs adat';
+
+                            // Képek kezelése
+                            allProductImages = product.images;
+                            const productDetailImage = document.getElementById('product-detail-image');
+                            const thumbnailGallery = document.getElementById('thumbnail-gallery');
+
+                            if (allProductImages && allProductImages.length > 0) {
+                                productDetailImage.src = `/${allProductImages[0]}`; // Fő kép betöltése
+                                productDetailImage.alt = product.name;
+
+                                // Bélyegképek létrehozása (csak a második képtől)
+                                allProductImages.forEach((imagePath, index) => {
+                                    // Ha az első kép, akkor azt nem tesszük bélyegképnek, az a fő kép
+                                    if (index === 0) {
+                                        return; // Kilép az aktuális iterációból
+                                    }
+
+                                    const thumbnail = document.createElement('img');
+                                    thumbnail.src = `/${imagePath}`;
+                                    thumbnail.alt = `${product.name} - kép ${index + 1}`;
+                                    thumbnail.classList.add('thumbnail-item');
+                                    
+                                    // Kattintás esemény a bélyegképre: közvetlenül a lightboxot nyitja meg
+                                    thumbnail.addEventListener('click', () => {
+                                        openLightbox(index); // Megnyitja a lightboxot az adott bélyegkép indexével
+                                    });
+                                    thumbnailGallery.appendChild(thumbnail);
+                                });
+
+                                // Kattintás a fő képre a lightbox megnyitásához
+                                productDetailImage.addEventListener('click', () => {
+                                    openLightbox(0); // A fő képre kattintva a lightbox az első (0. indexű) képpel nyílik meg
+                                });
+
+                                // Billentyűzet események (Escape a bezáráshoz, nyilak a navigációhoz)
+                                document.addEventListener('keydown', (e) => {
+                                    if (lightboxOverlay.classList.contains('active')) {
+                                        if (e.key === 'Escape') {
+                                            closeLightbox();
+                                        } else if (e.key === 'ArrowLeft') {
+                                            navigateLightbox(-1);
+                                        } else if (e.key === 'ArrowRight') {
+                                            navigateLightbox(1);
+                                        }
+                                    }
+                                });
+
+                            } else {
+                                productDetailImage.src = '/images/placeholder.webp'; // Helyettesítő kép, ha nincs kép
+                                productDetailImage.alt = 'Nincs elérhető kép';
+                            }
+
+                            const backBtn = document.querySelector('.back-to-category-btn');
+                            backBtn.addEventListener('click', () => {
+                                let categoryPath = '';
+                                if (product.category.startsWith('ferfi-')) {
+                                    categoryPath = `/ferfi/${product.category.replace('ferfi-', '')}.html`;
+                                } else if (product.category.startsWith('noi-')) {
+                                    categoryPath = `/noi/${product.category.replace('noi-', '')}.html`;
+                                } else if (product.category === 'gyerek-divat') {
+                                    categoryPath = `/gyerek.html`;
+                                } else if (product.category === 'kiegeszitok') {
+                                    categoryPath = `/kiegeszitok.html`;
+                                } else {
+                                    categoryPath = `/index.html#categories-overview`;
+                                }
+                                window.location.href = categoryPath;
+                            });
+
+                        } else {
+                            productDetailContainer.innerHTML = '<p>A keresett termék nem található.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Hiba a termék adatainak betöltésekor:', error);
+                        productDetailContainer.innerHTML = `<p>Hiba történt a termék adatainak betöltésekor. ${error.message || 'Ismeretlen hiba.'} Kérjük, próbálja újra később.</p>`;
+                    });
+            } else {
+                productDetailContainer.innerHTML = '<p>Nincs megadva termék azonosító.</p>';
+            }
+
+            // --- Lightbox FÜGGVÉNYEK ---
+
+            function openLightbox(index) {
+                currentImageIndex = index;
+                showImageInLightbox(currentImageIndex);
+                lightboxOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Megakadályozza a görgetést a háttérben
+            }
+
+            function closeLightbox() {
+                lightboxOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Visszaállítja a görgetést
+            }
+
+            function showImageInLightbox(index) {
+                if (allProductImages && allProductImages.length > 0) {
+                    currentImageIndex = (index + allProductImages.length) % allProductImages.length; // Loop around
+                    lightboxImage.src = `/${allProductImages[currentImageIndex]}`;
+                }
+            }
+
+            function navigateLightbox(direction) {
+                showImageInLightbox(currentImageIndex + direction);
+            }
+
+            // A bélyegképek aktív állapotának kezelését kivettük, mert nem cserélődik a fő kép
+            // Ez a függvény most nem szükséges, ha nincs aktív bélyegkép jelölés
+            /*
+            function updateActiveThumbnail(activeIndex) {
+                const thumbnails = document.querySelectorAll('.thumbnail-item');
+                thumbnails.forEach((thumb, index) => {
+                    if (index === activeIndex) {
+                        thumb.classList.add('active');
+                    } else {
+                        thumb.classList.remove('active');
+                    }
+                });
+                currentImageIndex = activeIndex;
+            }
+            */
+
+            // Lightbox eseménykezelők
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+            lightboxNext.addEventListener('click', () => navigateLightbox(1));
+            // Bezárás az overlay-re kattintva (ha nem a képre vagy a nyilakra kattint)
+            lightboxOverlay.addEventListener('click', (e) => {
+                if (e.target === lightboxOverlay) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
